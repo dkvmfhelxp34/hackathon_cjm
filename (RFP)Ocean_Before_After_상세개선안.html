@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>상세 개선안 — 예보사업부 RFP 통합 대시보드 Before & After</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0b3658;--blue:#4e9ad9;--slate:#486984;--steel:#688dac;
+  --fog:#dde7ee;--ice:#e6f1fa;--mist:#c8d8e4;--white:#fff;--teal:#42b3b1;
+  --red:#dc2626;--green:#16a34a;
+  --shadow:0 12px 48px rgba(11,54,88,.08);
+  --sans:'Figtree','Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--white);color:var(--navy);font-family:var(--sans);letter-spacing:-.01em}
+.cover{background:radial-gradient(circle at 86% 18%,rgba(78,154,217,.10),transparent 30%),var(--ice);border-bottom:1px solid var(--fog);padding:44px 32px}
+.tag{display:inline-block;border:1px solid var(--fog);background:var(--white);padding:7px 13px;border-radius:999px;font-size:12px;font-weight:700;color:var(--blue)}
+.cover h1{font-size:36px;letter-spacing:-.03em;margin:14px 0 10px;font-weight:800}
+.cover h1 em{font-style:normal;color:var(--blue)}
+.cover p{max-width:1120px;color:var(--slate);line-height:1.65;margin:0;font-size:15px}
+.cover .meta{margin-top:14px;font-size:12.5px;color:var(--steel);font-weight:600}
+main{max-width:1200px;margin:auto;padding:28px 32px}
+.card{background:var(--white);border:1px solid var(--fog);border-radius:20px;box-shadow:var(--shadow);padding:26px;margin-bottom:20px}
+h2{font-size:23px;margin:0 0 18px;letter-spacing:-.02em;font-weight:800}
+h3{font-size:17px;margin:0 0 10px;color:var(--navy);font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.box{border:1px solid var(--fog);background:var(--white);border-radius:16px;padding:18px}
+.box b{display:block;color:var(--navy);margin-bottom:8px;font-weight:700}
+.box ul{margin:6px 0 0;padding-left:18px}.box li,.box span{color:var(--slate);line-height:1.7;font-size:14px}
+.before{background:#fff7f7;border-color:#fecaca}.after{background:#f0fbf6;border-color:#bfe9d2}
+.badge{display:inline-block;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:700}
+.red{background:#fee2e2;color:#991b1b}.green{background:#dcfce7;color:#166534}
+.process{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.proc{border:1px solid var(--fog);background:var(--ice);border-radius:16px;padding:14px;text-align:center}
+.proc b{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:999px;background:var(--blue);color:#fff;margin-bottom:8px;font-weight:800}
+.proc span{display:block;font-size:12.5px;line-height:1.45;color:var(--navy);font-weight:700}
+.table{width:100%;border-collapse:collapse}
+.table th{background:var(--ice);text-align:left;padding:13px;border:1px solid var(--fog);font-size:14px;font-weight:700;color:var(--navy)}
+.table td{padding:13px;border:1px solid var(--fog);font-size:14px;line-height:1.6;vertical-align:top;color:var(--slate)}
+.table td b{color:var(--navy)}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kpi div{border:1px solid var(--fog);background:var(--white);border-radius:16px;padding:18px}
+.kpi b{display:block;font-size:23px;color:var(--blue);margin-bottom:6px;font-weight:800;letter-spacing:-.02em}
+.kpi span{font-size:13px;color:var(--slate);line-height:1.55}
+.report{border:1px solid var(--fog);background:var(--ice);border-radius:16px;padding:20px;color:var(--navy);line-height:1.7;font-size:14.5px}
+.report b{color:var(--blue)}
+.dlrow{text-align:right;margin-top:12px}
+.dlbtn{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;font-weight:700;font-size:13px;padding:9px 16px;border-radius:999px;box-shadow:0 4px 12px rgba(78,154,217,.28)}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{font-size:12.5px;font-weight:600;color:var(--navy);background:var(--white);border:1px solid var(--fog);border-radius:8px;padding:6px 11px}
+@media(max-width:1100px){.grid2,.grid4,.process,.kpi{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="cover">
+  <span class="tag">상세 개선안 · Before & After</span>
+  <h1>예보사업부 RFP <em>통합 대시보드</em></h1>
+  <p>업로드된 4개 제안요청서/공고문을 분석해, 기존의 수동 문서 확인 방식이 <b>원문 기반 React 통합 대시보드</b>로 어떻게 개선됐는지 정량·정성적으로 정리했습니다. 현재까지 구현된 기능 기준입니다.</p>
+  <div class="meta">구현: React (Vite/Bun) · 라이트 디자인 시스템(GeoSR) · 정적 데이터(원문 MD 자동 파싱) · 표출 전용</div>
+</div>
+<main>
+
+  <div class="card">
+    <h2>1. 기존 업무의 문제와 개선</h2>
+    <div class="grid2">
+      <div class="box before"><h3><span class="badge red">Before</span> 수동 확인</h3><ul>
+        <li>사업별 제안요청서(hwpx·pdf)를 각각 열람</li>
+        <li>사업명·예산·기간·발주처를 직접 정리</li>
+        <li>긴 과업내용에서 핵심 요구사항을 수동 추출</li>
+        <li>전문용어를 별도 검색하거나 담당자 경험에 의존</li>
+        <li>사업 간 비교가 어렵고 정리 형식이 제각각</li>
+      </ul></div>
+      <div class="box after"><h3><span class="badge green">After</span> 통합 대시보드</h3><ul>
+        <li>각 발주처의 사업을 하나의 목록으로 통합, 발주처 색상 구분</li>
+        <li>프로젝트명·예산·발주처를 표준 표로 제공</li>
+        <li>사업요약·대상범위·산출물·중요정보를 카드로 구조화</li>
+        <li>상세 용어해설(전문정의·쉬운설명·과업관점) 제공</li>
+        <li>원문 사업내용을 표출 + <b>원본 파일 다운로드</b></li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2. 개선 프로세스</h2>
+    <div class="process">
+      <div class="proc"><b>1</b><span>RFP 원문 분석</span></div>
+      <div class="proc"><b>2</b><span>정형 데이터화<br/>(MD→JSON 자동 파싱)</span></div>
+      <div class="proc"><b>3</b><span>프로젝트 목록·KPI</span></div>
+      <div class="proc"><b>4</b><span>요약·용어해설</span></div>
+      <div class="proc"><b>5</b><span>원문 구조화 표출</span></div>
+      <div class="proc"><b>6</b><span>원본 다운로드</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. 정량적 개선 효과</h2>
+    <div class="kpi">
+      <div><b>4개 사업 통합</b><span>해안침수·해양위성·저차생태계·민군경 AI를 한 화면에서 확인</span></div>
+      <div><b>총 약 199억</b><span>발주처 필터 선택 시 사업 수·예산 합계가 실시간 연동</span></div>
+      <div><b>28개 용어 해설</b><span>전문정의·쉬운설명·과업관점 3단으로 해석 기준 통일</span></div>
+      <div><b>3단계 화면 구조</b><span>목록 → 요약/용어 → 원문(사업내용)으로 업무 흐름 표준화</span></div>
+      <div><b>70~80% 절감 예상</b><span>파일 탐색·핵심정리·용어확인에 드는 반복시간 감소</span></div>
+      <div><b>원본 파일 다운로드</b><span>원본 파일명 그대로 hwpx·pdf 즉시 내려받기 제공</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>4. 정성적 개선 효과</h2>
+    <table class="table">
+      <tr><th>영역</th><th>개선 내용</th><th>업무 효과</th></tr>
+      <tr><td><b>일관성</b></td><td>모든 사업을 같은 화면 구조·정보 단위로 정리</td><td>담당자별 정리 차이를 줄이고 비교 가능성 향상</td></tr>
+      <tr><td><b>이해도</b></td><td>전문용어를 전문정의·쉬운설명·과업관점으로 분리</td><td>비전문자도 과업 핵심을 빠르게 이해</td></tr>
+      <tr><td><b>근거성</b></td><td>요약 + 원문 구조화 표출 + 원본 파일 다운로드</td><td>요약 신뢰성↑, 원문 추적·검증 시간 단축</td></tr>
+      <tr><td><b>탐색성</b></td><td>발주처 다중 필터 · 검색 · 초기화를 목록에 배치</td><td>관심 사업을 빠르게 좁혀 찾고 한 번에 초기화</td></tr>
+      <tr><td><b>가독성</b></td><td>원문을 대제목·항목·비고로 구분, 추출 깨진 표는 별도 박스 처리</td><td>긴 원문도 위계가 보여 훑어보기 쉬움</td></tr>
+      <tr><td><b>확장성</b></td><td>동일 구조로 새 RFP 추가, 목록 자동 스크롤</td><td>데이터가 늘어도 화면이 안정적으로 유지</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>5. 개선 전후 기능 비교</h2>
+    <table class="table">
+      <tr><th>기능</th><th>Before</th><th>After (현재 구현)</th></tr>
+      <tr><td><b>프로젝트 목록</b></td><td>파일명·폴더명으로 추정</td><td>프로젝트명·예산·발주처 표, 발주처 색상 구분</td></tr>
+      <tr><td><b>발주처 필터</b></td><td>없음 (수동 분류)</td><td>발주처 <b>다중 선택</b> 필터, KPI·목록·AI 안내 실시간 연동</td></tr>
+      <tr><td><b>검색</b></td><td>문서 내 검색 중심</td><td>프로젝트·발주처·용어 검색(실행 시 적용) + <b>초기화</b></td></tr>
+      <tr><td><b>사업요약·산출물</b></td><td>원문을 읽고 직접 정리</td><td>요약·대상범위·산출물·중요정보 카드 제공</td></tr>
+      <tr><td><b>용어 이해</b></td><td>별도 검색·경험 의존</td><td>상세 용어해설 카드(3단 해석)</td></tr>
+      <tr><td><b>원문 확인</b></td><td>원본 파일을 다시 열어 확인</td><td>사업내용 구조화 표출 + <b>원본 파일 다운로드</b></td></tr>
+      <tr><td><b>AI 어시스턴트</b></td><td>없음</td><td>AI 어시스턴트 패널(예시 질의 기반 탐색 안내)</td></tr>
+      <tr><td><b>사용성</b></td><td>정적 문서</td><td>실시간 시계·상태표시, 페이지 전환 애니메이션, 반응형</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>6. 적용 대상 프로젝트 (4건)</h2>
+    <div class="grid4">
+      <div class="box"><b>2026 해안침수예상도 제작</b><span>예산 25억 · ~2026.12.10<br/>국립해양조사원</span></div>
+      <div class="box"><b>2026 해양위성정보 종합분석·활용지원</b><span>예산 19억 · ~2026.12.10<br/>국립해양조사원</span></div>
+      <div class="box"><b>연근해 저차해양생태계 먹이망 구조 파악(II)</b><span>예산 5.3억 · ~2026.12.04<br/>국립수산과학원</span></div>
+      <div class="box"><b>민군경 AI 기반 해양영상 융복합 분석기술개발</b><span>총 150억 · 2026.04~2029.12<br/>해양수산부 / KIMST</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>7. 기술 구성</h2>
+    <div class="stack">
+      <span class="chip">React + Vite (Bun)</span>
+      <span class="chip">정적 데이터 (DB 없음, 표출 전용)</span>
+      <span class="chip">원문 MD → JSON 자동 파싱</span>
+      <span class="chip">라이트 디자인 시스템 (GeoSR)</span>
+      <span class="chip">발주처 다중 필터 · 검색 · 초기화</span>
+      <span class="chip">원문 구조화 렌더링 · 표 잔해 분리</span>
+      <span class="chip">원본 파일 다운로드 (hwpx·pdf)</span>
+      <span class="chip">실시간 시계 · 페이지 전환 애니메이션</span>
+      <span class="chip">목록 자동 스크롤 (데이터 증가 대비)</span>
+    </div>
+  </div>
+
+  <div class="report">
+    <b>결론</b><br/>
+    본 개선은 “RFP를 읽기 쉽게 보여주는 화면”을 넘어, 수동 문서 확인 업무를 <b>원문 기반 지식 대시보드</b>로 전환한다.
+    발주처 필터·검색으로 원하는 사업을 빠르게 좁히고, 요약·용어·구조화된 원문·원본 다운로드로 검토 속도와 추적성을 동시에 높였다.
+    정적 데이터 구조라 향후 DB/API 연동, 수주검토·위험평가·결재보고서 자동화로 확장 가능하다.
+  </div>
+</main>
+</body>
+</html>

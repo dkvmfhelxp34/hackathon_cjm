@@ -1,0 +1,6 @@
+# agent1 PDF 파서 의존성 (Python 3.10+ 에서 설치)
+# 설치: python3.11 -m pip install -r requirements.txt
+#
+# opendataloader-pdf: PDF→구조화(JSON) 변환. Java 11+ 내장, 100% 로컬·오프라인, GPU 불필요.
+#   GitHub: https://github.com/opendataloader-project/opendataloader-pdf
+opendataloader-pdf>=2.4.7

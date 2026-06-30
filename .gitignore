@@ -3,3 +3,11 @@
 
 # OMC runtime state
 .omc/
+submit/
+
+# DB 매니저 생성물(적재 결과물 — 재생성 가능)
+src/db/*.db
+
+# Python 캐시
+__pycache__/
+*.pyc

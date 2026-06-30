@@ -144,6 +144,8 @@ h1 em { font-style: normal; background: linear-gradient(110deg, var(--cy2), var(
 .searchwrap { display: flex; align-items: center; gap: 8px; }
 .search { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted2); border: 1px solid rgba(150, 180, 235, 0.16); background: rgba(8, 14, 28, 0.4); padding: 8px 13px; border-radius: 10px; }
 .search:focus-within { border-color: rgba(90, 235, 215, 0.4); }
+.search-go { background: transparent; border: 0; padding: 0; display: flex; align-items: center; cursor: pointer; }
+.search-go:hover :where(circle, path) { stroke: var(--cy2); }
 .search input { background: transparent; border: 0; outline: 0; color: var(--text); font-size: 12.5px; width: 168px; font-family: inherit; }
 .search input::placeholder { color: var(--muted2); }
 .search-clear { background: transparent; border: 0; color: var(--muted2); font-size: 12px; padding: 0 2px; }

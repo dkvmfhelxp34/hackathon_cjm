@@ -1,8 +1,20 @@
+import { useState } from 'react'
 import { projects, agencyColor, AGENCIES } from '../data/projects.js'
 import { SearchIcon } from './icons.jsx'
 
-export default function ProjectList({ list, onOpen, agencies = [], onAgency, onClearAgency, query, setQuery }) {
+export default function ProjectList({ list, onOpen, agencies = [], onAgency, onClearAgency, onSearch }) {
   const isOn = (a) => agencies.some((x) => x.label === a.label)
+  // 입력값(text)과 실제 적용 검색어 분리 — 제출 시에만 필터 적용
+  const [text, setText] = useState('')
+  const submit = (e) => {
+    if (e) e.preventDefault()
+    onSearch(text.trim())
+  }
+  const clear = () => {
+    setText('')
+    onSearch('')
+  }
+
   return (
     <div className="glass">
       <div className="panelhead">
@@ -10,18 +22,20 @@ export default function ProjectList({ list, onOpen, agencies = [], onAgency, onC
           <span className="k">› </span>프로젝트 목록
           <span className="cnt">{list.length}건</span>
         </h2>
-        <div className="search">
-          <SearchIcon />
+        <form className="search" onSubmit={submit}>
+          <button type="submit" className="search-go" title="검색">
+            <SearchIcon />
+          </button>
           <input
             type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="프로젝트 / 발주처 / 용어"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            placeholder="프로젝트 / 발주처 / 용어 (검색 실행)"
           />
-          {query && (
-            <button className="search-clear" onClick={() => setQuery('')} title="검색어 지우기">✕</button>
+          {text && (
+            <button type="button" className="search-clear" onClick={clear} title="검색어 지우기">✕</button>
           )}
-        </div>
+        </form>
       </div>
 
       <div className="filterbar">

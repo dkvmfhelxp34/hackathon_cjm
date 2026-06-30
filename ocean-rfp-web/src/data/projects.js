@@ -29,9 +29,9 @@ export const getProject = (id) => projects.find((p) => p.id === id)
 
 // 상단바 기관 필터 (label=표시명, match=agency 포함 매칭, color=기관 색상)
 export const AGENCIES = [
-  { label: '국립해양조사원', match: '해양조사원', color: '#3ddccb' }, // coast, satellite — aqua
-  { label: '수산과학원', match: '수산과학원', color: '#5fd38a' }, // ecology — green
-  { label: 'KIMST', match: 'KIMST', color: '#8a9bff' }, // ai — periwinkle
+  { label: '국립해양조사원', match: '해양조사원', color: '#2f7dc4' }, // coast, satellite — blue
+  { label: '수산과학원', match: '수산과학원', color: '#2a9d8f' }, // ecology — teal-green
+  { label: 'KIMST', match: 'KIMST', color: '#6c5cd6' }, // ai — violet
 ]
 
 // 발주처 → 색상

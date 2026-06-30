@@ -46,7 +46,7 @@ export default function ProjectList({ list, onOpen, agencies = [], onAgency, onC
             className={`agency-btn${isOn(a) ? ' on' : ''}`}
             onClick={() => onAgency(a)}
             title={`${a.label} 사업 필터 (다중 선택 가능)`}
-            style={isOn(a) ? { background: a.color, borderColor: a.color, color: '#070b16' } : { color: a.color }}
+            style={isOn(a) ? { background: a.color, borderColor: a.color, color: '#fff' } : { color: a.color }}
           >
             <span className="agency-dot" style={{ background: a.color }} />
             {a.label}

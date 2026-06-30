@@ -24,6 +24,17 @@ export const AGENCIES = [
 export const filterByAgency = (agency) =>
   agency ? projects.filter((p) => p.agency.includes(agency.match)) : projects
 
+// 목록의 예산 합계(억) — budgetShort("25억" 등) 파싱·합산
+export const sumBudgetEok = (list) => {
+  const sum = list.reduce(
+    (s, p) => s + (parseFloat(String(p.budgetShort).replace(/[^0-9.]/g, '')) || 0),
+    0,
+  )
+  if (sum === 0) return '0'
+  const r = sum < 10 ? Math.round(sum * 10) / 10 : Math.round(sum)
+  return `약 ${r}억`
+}
+
 // KPI 덱 집계
 export const kpis = {
   count: projects.length,

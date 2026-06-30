@@ -30,6 +30,13 @@ export default function App() {
   const openSummary = (id) => setView({ screen: 'summary', id })
   const openOriginal = (id) => setView({ screen: 'original', id })
 
+  // 실시간 시계
+  const [now, setNow] = useState(() => new Date())
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000)
+    return () => clearInterval(id)
+  }, [])
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [view])
@@ -41,7 +48,12 @@ export default function App() {
       <div className="app">
         <StatusBar agency={agency} onAgency={selectAgency} />
         {view.screen === 'main' && (
-          <MainScreen onOpen={openSummary} agency={agency} onClearAgency={() => setAgency(null)} />
+          <MainScreen
+            onOpen={openSummary}
+            agency={agency}
+            onClearAgency={() => setAgency(null)}
+            now={now}
+          />
         )}
         {view.screen === 'summary' && (
           <SummaryScreen id={view.id} onBack={goMain} onOriginal={openOriginal} />

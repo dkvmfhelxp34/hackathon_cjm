@@ -1,13 +1,12 @@
-import { WaveMark } from './icons.jsx'
 import { AGENCIES } from '../data/projects.js'
+import logo from '../assets/geosr-logo.png'
 
 export default function StatusBar({ agency, onAgency }) {
   return (
     <div className="statusbar">
       <div className="sb-l">
         <div className="logo">
-          <span className="lmark"><WaveMark /></span>
-          OCEAN RFP · INTELLIGENCE
+          <img src={logo} alt="GeoSR" className="brand-logo" />
         </div>
       </div>
       <div className="sb-r">

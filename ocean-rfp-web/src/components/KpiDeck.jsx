@@ -1,16 +1,18 @@
-import { kpis } from '../data/projects.js'
+import { sumBudgetEok } from '../data/projects.js'
 
-const ITEMS = [
-  { lab: 'Analyzed', v: kpis.count, unit: ' 사업', hi: true },
-  { lab: 'Total Budget', v: kpis.budgetTotal, mono: true },
-  { lab: 'Agencies', v: kpis.agencies, unit: ' 기관' },
-  { lab: 'Key Terms', v: kpis.terms, unit: ' 용어' },
-]
-
-export default function KpiDeck() {
+// 필터링된 목록(list)에 연동되어 실시간 집계
+export default function KpiDeck({ list }) {
+  const agencies = new Set(list.map((p) => p.agency)).size
+  const terms = list.reduce((n, p) => n + p.terms.length, 0)
+  const items = [
+    { lab: 'Analyzed', v: list.length, unit: ' 사업', hi: true },
+    { lab: 'Total Budget', v: sumBudgetEok(list) },
+    { lab: 'Agencies', v: agencies, unit: ' 기관' },
+    { lab: 'Key Terms', v: terms, unit: ' 용어' },
+  ]
   return (
     <div className="deck">
-      {ITEMS.map((it) => (
+      {items.map((it) => (
         <div key={it.lab} className={`glass kpi${it.hi ? ' hi' : ''}`}>
           <div className="lab">{it.lab}</div>
           <div className="v">

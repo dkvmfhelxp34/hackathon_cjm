@@ -46,18 +46,17 @@ button { font-family: inherit; cursor: pointer; }
 
 /* --- status bar --- */
 .statusbar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 13px 40px; border-bottom: 1px solid rgba(150, 180, 235, 0.1);
+  border-bottom: 1px solid rgba(150, 180, 235, 0.1);
   background: rgba(10, 16, 30, 0.55); backdrop-filter: blur(16px);
   position: sticky; top: 0; z-index: 20;
 }
-.sb-l { display: flex; align-items: center; gap: 14px; }
-.logo { display: flex; align-items: center; gap: 11px; }
-.brand-logo {
-  height: 40px; width: auto; display: block;
-  background: #fff; border-radius: 9px; padding: 5px 11px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+/* 본문(main, max-width 1520·padding 40)과 동일한 정렬 폭 — 줄맞춤 */
+.statusbar-inner {
+  max-width: 1520px; margin: 0 auto; padding: 12px 40px;
+  display: flex; align-items: center; justify-content: space-between;
 }
+.sb-l { display: flex; align-items: center; gap: 14px; }
+.brand-logo { height: 42px; width: auto; display: block; filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4)); }
 .sb-tags { display: flex; gap: 8px; font-size: 10.5px; }
 .sbt { color: #8fa6cb; border: 1px solid rgba(150, 180, 235, 0.16); padding: 5px 10px; border-radius: 7px; }
 .sbt.live { color: var(--cy2); border-color: rgba(90, 235, 215, 0.3); }

@@ -81,11 +81,11 @@ h3{font-size:17px;margin:0 0 10px;color:var(--navy)}
 .pill.r{background:#fee2e2;color:#991b1b}.pill.g{background:#dcfce7;color:#166534}.pill.b{background:var(--ice);color:#0d4a78}
 
 /* Strength */
-.str{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.str div{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff}
-.str b{display:block;color:var(--navy);margin-bottom:6px;font-size:15px}
-.str b .em{color:var(--blue)}
-.str span{font-size:13.5px;color:#3b556e}
+.str{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.str div{border:1px solid var(--line);border-radius:18px;padding:22px 24px;background:#fff;display:flex;align-items:center;gap:14px}
+.str .em{display:block;color:var(--navy);font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1.35}
+.str .em b{color:var(--blue)}
+.str .ico{flex:none;font-size:28px}
 
 /* Stack chips */
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -116,21 +116,9 @@ h3{font-size:17px;margin:0 0 10px;color:var(--navy)}
 
 <main>
 
-  <!-- WHY -->
-  <section class="card">
-    <h2><span class="n">1</span> 왜 만들게 되었나</h2>
-    <p class="lead">기존 위험요소·수주 검토는 “문서 작성 중심”의 수작업이었습니다. 우리는 이걸 “수주 의사결정 중심”의 자동화 체계로 바꾸는 것을 목표로 했습니다.</p>
-    <div class="why">
-      <div><b>① 흩어진 문서</b><span>담당자가 내 PC에서 한글/PDF 공고문을 찾아 열고, 사업개요·예산·기간·과업·평가배점을 직접 읽어 옮겨 적었습니다.</span></div>
-      <div><b>② 주관적 판단</b><span>참여 여부·위험도 점수가 개인 경험에 의존해 일관성이 떨어지고, 근거 추적이 안 됐습니다.</span></div>
-      <div><b>③ 반복 재작성</b><span>체크리스트 → 보고서를 매번 다시 쓰고, 결재 자료를 손으로 정리했습니다.</span></div>
-    </div>
-  </section>
-
   <!-- TWO PRODUCTS -->
   <section class="card">
-    <h2><span class="n">2</span> 두 개의 산출물</h2>
-    <p class="lead">하나는 “이미 분석된 RFP를 보여주는” 표출형 대시보드, 다른 하나는 “보면서 참여를 결정하는” 의사결정 플랫폼입니다. 같은 데이터 파이프라인 위에 올라갑니다.</p>
+    <h2><span class="n">1</span> 두 개의 산출물</h2>
     <div class="grid2">
 
       <div class="prod a">
@@ -138,17 +126,10 @@ h3{font-size:17px;margin:0 0 10px;color:var(--navy)}
           <span class="badgeic">📑</span>
           <h3>RFP 대시보드</h3>
         </div>
-        <p class="role">분석된 해양 RFP를 웹으로 보여주는 read-only 대시보드 — 데이터 계층 연동을 시도</p>
-        <ul>
-          <li><b>3화면 구조</b> — 문서 목록 → 사업요약+용어해설 → 원본 전문</li>
-          <li><b>문서 카드</b> — 발주처·예산·마감·문서유형(용역/R&amp;D) 배지, 다중선택 필터·검색</li>
-          <li><b>사업 요약</b> — 5줄 요약·핵심 과업·리스크·KPI 덱, 원문 근거 표시</li>
-          <li><b>AI 어시스턴트 패널</b> — 검색/LLM은 시각 목업(표출 전용)</li>
-        </ul>
+        <p class="role">분석된 해양 RFP를 한눈에 보여주는 표출형 대시보드</p>
         <div class="mine learn">
-          <span class="lbl">시도했지만 채택되진 못함 → 다음엔 이렇게</span>
+          <span class="lbl">시도했지만 채택되진 못함</span>
           <p>내가 만든 <b>데이터 계층(agent1 파싱 → agent2 분석 → SQLite DB)과 조회 가이드(query API 9종)</b>를 대시보드에 붙이려 했지만, 최종 결과물 기준에는 못 미쳐 <b>실제로 채택되진 못했습니다.</b></p>
-          <p><b>배운 구조:</b> 다음엔 ① 표현 계층과 데이터 계약(JSON 스키마)을 <b>먼저 합의</b>하고 ② 대시보드가 mock으로 화면을 완성한 뒤 ③ 같은 계약 위에서 mock↔실데이터를 교체하면, 파이프라인 노력이 그대로 화면에 연결됩니다.</p>
         </div>
       </div>
 
@@ -157,13 +138,7 @@ h3{font-size:17px;margin:0 0 10px;color:var(--navy)}
           <span class="badgeic">🧭</span>
           <h3>수주검토 의사결정 플랫폼</h3>
         </div>
-        <p class="role">공고문을 올리면 역할별로 정량 평가하고 자동 결과보고서를 생성하는 React 플랫폼</p>
-        <ul>
-          <li><b>6단계 플로우</b> — 업로드+평가자 지정 → 사업개요 → 부서장 → 행정부 → 부문장 → 결과보고서 설정</li>
-          <li><b>역할별 정량평가</b> — 18개 검토항목 + 종합 6축, <b>레이더 차트</b> 시각화</li>
-          <li><b>예산 자동 산정</b> — 전체 예산 × 부서 예산비율 자동 계산</li>
-          <li><b>자동 결과보고서</b> — 결재란 포함 별도 보고서 + 결재 상신 흐름</li>
-        </ul>
+        <p class="role">공고문을 올리면 역할별로 정량 평가하고 자동 결과보고서를 만드는 의사결정 플랫폼</p>
         <div class="mine">
           <span class="lbl">내가 한 역할</span>
           <p>plus1 명세(.md/.html)를 분석해 <b>designer 서브에이전트에 React 멀티파일 빌드를 위임</b>하고, 이후 <b>cord 스타일 디자인 토큰으로 전 컴포넌트를 리테마</b>(navy/signal-blue) 하며 직접 구현·검증했습니다.</p>
@@ -175,7 +150,7 @@ h3{font-size:17px;margin:0 0 10px;color:var(--navy)}
 
   <!-- PIPELINE -->
   <section class="card">
-    <h2><span class="n">3</span> 전체 파이프라인 구성</h2>
+    <h2><span class="n">2</span> 전체 파이프라인 구성</h2>
     <p class="lead">PDF 한 장에서 의사결정 화면까지 — 결정적(재현 가능)으로 흐르도록 설계했습니다. 같은 PDF·같은 순서면 누구나 같은 결과를 냅니다.</p>
     <div class="pipe">
       <div class="step">
@@ -209,7 +184,7 @@ h3{font-size:17px;margin:0 0 10px;color:var(--navy)}
 
   <!-- 시행착오 -->
   <section class="card">
-    <h2><span class="n">4</span> 시행착오와 해결</h2>
+    <h2><span class="n">3</span> 시행착오와 해결</h2>
     <p class="lead">막혔던 지점과, 그걸 어떻게 우회/개선했는지가 곧 우리 파이프라인의 설계 근거가 되었습니다.</p>
     <table class="tbl">
       <tr><th style="width:22%">막힌 지점</th><th style="width:40%">무엇이 문제였나</th><th>해결 / 깨달음</th></tr>
@@ -233,52 +208,17 @@ h3{font-size:17px;margin:0 0 10px;color:var(--navy)}
         <td>‘적용 기간(가점기준)’ 표의 “최근 3년 이내”를 사업기간으로 오인식</td>
         <td>헤더를 <code>연구개발기간|사업기간|총 기간</code>으로 한정해 오탐 제거</td>
       </tr>
-      <tr>
-        <td><span class="pill b">초기 판단</span> 명세 위치</td>
-        <td>GitHub URL이 404라 명세가 없는 줄 알고 빈 내용으로 덮어쓸 뻔함</td>
-        <td>로컬에서 실제 18KB 명세 발견 → “파일 미읽음” 가드가 원본 보존</td>
-      </tr>
-      <tr>
-        <td><span class="pill g">협업</span> git 충돌</td>
-        <td>push가 non-fast-forward 거부, 원격이 앞서 있음</td>
-        <td>원격 겹침 파일이 빈 템플릿임을 검증 후 <code>merge -X ours</code>로 무손실 병합</td>
-      </tr>
     </table>
   </section>
 
   <!-- 장점 -->
   <section class="card">
-    <h2><span class="n">5</span> 우리의 장점</h2>
+    <h2><span class="n">4</span> 우리의 장점</h2>
     <div class="str">
-      <div><b><span class="em">결정적·재현 가능</span></b><span>파서+정규식 기반이라 같은 입력이면 항상 같은 결과. run.sh·requirements·README로 누구나 동일하게 재현합니다.</span></div>
-      <div><b><span class="em">100% 로컬·무료 동작</span></b><span>opendataloader-pdf와 Ollama로 API 키 없이도 풀 파이프라인이 돌아갑니다. 키를 넣으면 코드 수정 없이 Claude LIVE로 전환.</span></div>
-      <div><b><span class="em">근거 추적 + 할루시네이션 방지</span></b><span>전 항목 evidence_id 자동 연결, 근거 없으면 미생성. 배점 합계(100=100) 자동 검산.</span></div>
-      <div><b><span class="em">계약 기반 확장성</span></b><span>같은 DB·JSON 계약 위에 여러 화면을 올릴 수 있는 구조. 의사결정 플랫폼을 완성했고, 표출형 대시보드 연동은 다음 단계의 명확한 길을 확보했습니다.</span></div>
-      <div><b><span class="em">백엔드 선택 자유</span></b><span>AGENT2_BACKEND=hybrid / claude / ollama / offline 한 줄로 교체. 환경·예산에 맞춰 고릅니다.</span></div>
-      <div><b><span class="em">역할 분리 의사결정</span></b><span>부서장·행정부·부문장 판단을 분리해, 결재권자가 리스크 원인을 빠르게 파악합니다.</span></div>
-    </div>
-  </section>
-
-  <!-- 기술스택 -->
-  <section class="card">
-    <h2><span class="n">6</span> 기술 스택 · 재사용 자산</h2>
-    <div class="grid2">
-      <div>
-        <h3>기술 스택</h3>
-        <div class="chips">
-          <span>opendataloader-pdf</span><span>Python 3.11</span><span>SQLite</span>
-          <span>Claude API (tool use)</span><span>Ollama (qwen2.5)</span>
-          <span>React 18 · TypeScript</span><span>Vite · Tailwind</span><span>Cloudflare Pages</span>
-        </div>
-      </div>
-      <div>
-        <h3>재사용 산출물 (다른 문서에도 그대로 적용)</h3>
-        <div class="chips">
-          <span>agent1_parse.py · run.sh</span><span>agent2_extract.py (4백엔드)</span>
-          <span>schema.sql · load_to_db.py · query.py</span><span>입력 계약 mock</span>
-          <span>재사용 프롬프트셋</span><span>cord 디자인 토큰</span>
-        </div>
-      </div>
+      <div><span class="ico">🔁</span><span class="em">같은 입력이면 항상 같은 결과 — <b>결정적·재현 가능</b></span></div>
+      <div><span class="ico">🔒</span><span class="em">API 키 없이도 도는 <b>100% 로컬·무료</b> 파이프라인</span></div>
+      <div><span class="ico">🔎</span><span class="em">전 항목 근거 연결로 <b>할루시네이션 방지</b></span></div>
+      <div><span class="ico">🧩</span><span class="em">부서장·행정부·부문장 <b>역할 분리 의사결정</b></span></div>
     </div>
   </section>
 

@@ -57,6 +57,26 @@ button { font-family: inherit; cursor: pointer; }
 }
 .sb-l { display: flex; align-items: center; gap: 14px; }
 .brand-logo { height: 42px; width: auto; display: block; filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4)); }
+
+/* --- masthead (로고 옆 타이틀) --- */
+.masthead { padding: 13px 40px; }
+.mast-left { display: flex; align-items: center; gap: 18px; min-width: 0; }
+.mast-div { width: 1px; align-self: stretch; min-height: 42px; background: rgba(150, 180, 235, 0.2); }
+.mast-text { min-width: 0; }
+.mast-text .eyebrow { font-size: 10px; letter-spacing: 0.22em; }
+.mast-title { font-size: 23px; font-weight: 900; letter-spacing: -0.03em; color: #f2f7ff; margin-top: 4px; line-height: 1.1; white-space: nowrap; }
+.mast-title em { font-style: normal; background: linear-gradient(110deg, var(--cy2), var(--vi)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mast-right { display: flex; align-items: center; gap: 22px; }
+.masthead .clock { text-align: right; }
+.masthead .clock .t { font-size: 22px; }
+.masthead .clock .d { font-size: 10px; }
+
+/* --- main 상단 설명 한 줄 --- */
+.lead { color: var(--muted); font-size: 13.5px; line-height: 1.6; margin-bottom: 20px; max-width: 1100px; }
+
+/* --- 프로젝트 목록 내 발주처 필터바 --- */
+.filterbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 12px 22px; border-bottom: 1px solid rgba(150, 180, 235, 0.08); }
+.filterbar-label { font-size: 11px; font-weight: 700; color: var(--muted2); letter-spacing: 0.1em; margin-right: 4px; }
 .sb-tags { display: flex; gap: 8px; font-size: 10.5px; }
 .sbt { color: #8fa6cb; border: 1px solid rgba(150, 180, 235, 0.16); padding: 5px 10px; border-radius: 7px; }
 .sbt.live { color: var(--cy2); border-color: rgba(90, 235, 215, 0.3); }
@@ -242,9 +262,10 @@ h1 em { font-style: normal; background: linear-gradient(110deg, var(--cy2), var(
   .row .ag, .row .go { display: none; }
 }
 @media (max-width: 760px) {
-  .statusbar { padding: 12px 16px; }
-  .sb-r .mono, .sb-tags .sbt:nth-child(3) { display: none; }
-  .logo { font-size: 14px; }
+  .masthead { padding: 12px 16px; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .mast-div { display: none; }
+  .mast-title { font-size: 19px; white-space: normal; }
+  .mast-right { width: 100%; justify-content: space-between; }
   .dhero { padding: 22px 18px; }
   .dhero h1 { font-size: 26px; }
 }

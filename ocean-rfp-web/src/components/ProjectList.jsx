@@ -1,34 +1,46 @@
-import { projects, agencyColor } from '../data/projects.js'
+import { projects, agencyColor, AGENCIES } from '../data/projects.js'
 import { SearchIcon } from './icons.jsx'
 
-export default function ProjectList({ list, onOpen, agencies = [], onClearAgency, query, setQuery }) {
+export default function ProjectList({ list, onOpen, agencies = [], onAgency, onClearAgency, query, setQuery }) {
+  const isOn = (a) => agencies.some((x) => x.label === a.label)
   return (
     <div className="glass">
       <div className="panelhead">
         <h2>
           <span className="k">› </span>프로젝트 목록
-          {agencies.length > 0 && (
-            <span className="filteron">· {agencies.map((a) => a.label).join(', ')}</span>
-          )}
           <span className="cnt">{list.length}건</span>
         </h2>
-        <div className="searchwrap">
-          {agencies.length > 0 && (
-            <button className="clearfilter" onClick={onClearAgency} title="기관 필터 해제">✕ 기관</button>
+        <div className="search">
+          <SearchIcon />
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="프로젝트 / 발주처 / 용어"
+          />
+          {query && (
+            <button className="search-clear" onClick={() => setQuery('')} title="검색어 지우기">✕</button>
           )}
-          <div className="search">
-            <SearchIcon />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="프로젝트 / 발주처 / 용어"
-            />
-            {query && (
-              <button className="search-clear" onClick={() => setQuery('')} title="검색어 지우기">✕</button>
-            )}
-          </div>
         </div>
+      </div>
+
+      <div className="filterbar">
+        <span className="filterbar-label">발주처</span>
+        {AGENCIES.map((a) => (
+          <button
+            key={a.label}
+            className={`agency-btn${isOn(a) ? ' on' : ''}`}
+            onClick={() => onAgency(a)}
+            title={`${a.label} 사업 필터 (다중 선택 가능)`}
+            style={isOn(a) ? { background: a.color, borderColor: a.color, color: '#070b16' } : { color: a.color }}
+          >
+            <span className="agency-dot" style={{ background: a.color }} />
+            {a.label}
+          </button>
+        ))}
+        {agencies.length > 0 && (
+          <button className="clearfilter" onClick={onClearAgency} title="기관 필터 해제">✕ 해제</button>
+        )}
       </div>
 
       {list.length === 0 ? (

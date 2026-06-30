@@ -55,13 +55,13 @@ export default function App() {
       <div className="bg-glow" />
       <div className="bg-grid" />
       <div className="app">
-        <StatusBar agencies={agencies} onAgency={selectAgency} />
+        <StatusBar now={now} />
         {view.screen === 'main' && (
           <MainScreen
             onOpen={openSummary}
             agencies={agencies}
+            onAgency={selectAgency}
             onClearAgency={clearAgencies}
-            now={now}
           />
         )}
         {view.screen === 'summary' && (

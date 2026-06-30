@@ -16,33 +16,16 @@ function matches(p, q) {
   )
 }
 
-const pad = (n) => String(n).padStart(2, '0')
-
-export default function MainScreen({ onOpen, agencies, onClearAgency, now }) {
+export default function MainScreen({ onOpen, agencies, onAgency, onClearAgency }) {
   const [query, setQuery] = useState('')
   const list = filterByAgency(agencies).filter((p) => matches(p, query))
 
-  const hh = pad(now.getHours())
-  const mm = pad(now.getMinutes())
-  const date = `${now.getFullYear()}.${pad(now.getMonth() + 1)}.${pad(now.getDate())}`
-  const h = now.getHours()
-  const label = h < 6 ? 'DAWN' : h < 12 ? 'MORNING' : h < 18 ? 'AFTERNOON' : 'EVENING'
-
   return (
     <main>
-      <div className="head">
-        <div>
-          <div className="eyebrow">예보사업부 · Forecasting Division</div>
-          <h1>예보사업부 RFP <em>통합 대시보드</em></h1>
-          <p className="oneline">
-            분석된 제안요청서의 사업요약·핵심 용어·원문을 한 화면에서 탐색합니다. 발주처 필터와 검색으로 원하는 사업을 빠르게 찾을 수 있습니다.
-          </p>
-        </div>
-        <div className="clock">
-          <div className="t mono">{hh}:{mm}</div>
-          <div className="d mono">{label} · {date}</div>
-        </div>
-      </div>
+      <p className="lead">
+        분석된 제안요청서의 사업요약·핵심 용어·원문을 한 화면에서 탐색합니다. 발주처 필터와
+        검색으로 원하는 사업을 빠르게 찾을 수 있습니다.
+      </p>
 
       <KpiDeck list={list} />
 
@@ -51,6 +34,7 @@ export default function MainScreen({ onOpen, agencies, onClearAgency, now }) {
           list={list}
           onOpen={onOpen}
           agencies={agencies}
+          onAgency={onAgency}
           onClearAgency={onClearAgency}
           query={query}
           setQuery={setQuery}

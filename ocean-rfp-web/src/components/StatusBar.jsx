@@ -2,12 +2,16 @@ import logo from '../assets/geosr-logo.png'
 
 const pad = (n) => String(n).padStart(2, '0')
 
+const WD = ['일', '월', '화', '수', '목', '금', '토']
+
 export default function StatusBar({ now }) {
-  const hh = pad(now.getHours())
-  const mm = pad(now.getMinutes())
-  const date = `${now.getFullYear()}.${pad(now.getMonth() + 1)}.${pad(now.getDate())}`
   const h = now.getHours()
-  const label = h < 6 ? 'DAWN' : h < 12 ? 'MORNING' : h < 18 ? 'AFTERNOON' : 'EVENING'
+  const hh = pad(h)
+  const mm = pad(now.getMinutes())
+  const ss = pad(now.getSeconds())
+  const ampm = h < 12 ? '오전' : '오후'
+  const wd = WD[now.getDay()]
+  const date = `${now.getFullYear()}.${pad(now.getMonth() + 1)}.${pad(now.getDate())}`
 
   return (
     <header className="statusbar">
@@ -22,8 +26,12 @@ export default function StatusBar({ now }) {
         </div>
         <div className="mast-right">
           <div className="clock">
-            <div className="t mono">{hh}:{mm}</div>
-            <div className="d mono">{label} · {date}</div>
+            <div className="clock-time">
+              <span className="clock-live" />
+              <span className="hm mono">{hh}<span className="colon">:</span>{mm}</span>
+              <span className="ss mono">{ss}</span>
+            </div>
+            <div className="clock-meta mono">{ampm} · {date} ({wd})</div>
           </div>
           <span className="online">SYSTEM ONLINE</span>
         </div>

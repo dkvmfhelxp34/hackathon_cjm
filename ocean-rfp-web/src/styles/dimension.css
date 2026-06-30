@@ -67,9 +67,17 @@ button { font-family: inherit; cursor: pointer; }
 .mast-title { font-size: 23px; font-weight: 900; letter-spacing: -0.03em; color: #f2f7ff; margin-top: 4px; line-height: 1.1; white-space: nowrap; }
 .mast-title em { font-style: normal; background: linear-gradient(110deg, var(--cy2), var(--vi)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .mast-right { display: flex; align-items: center; gap: 22px; }
-.masthead .clock { text-align: right; }
-.masthead .clock .t { font-size: 22px; }
-.masthead .clock .d { font-size: 10px; }
+
+/* --- refined clock --- */
+.clock { text-align: right; }
+.clock-time { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.clock-live { width: 7px; height: 7px; border-radius: 50%; background: var(--cy); box-shadow: 0 0 10px var(--cy); animation: clockpulse 2s ease-in-out infinite; }
+.hm { font-size: 25px; font-weight: 700; color: #eaf2ff; letter-spacing: 0.06em; line-height: 1; font-variant-numeric: tabular-nums; }
+.hm .colon { animation: blink 1s steps(1, end) infinite; color: var(--cy2); padding: 0 1px; }
+.ss { font-size: 13px; font-weight: 700; color: var(--cy2); letter-spacing: 0.04em; font-variant-numeric: tabular-nums; align-self: flex-end; padding-bottom: 2px; }
+.clock-meta { font-size: 10.5px; color: #7d93b8; margin-top: 4px; letter-spacing: 0.08em; }
+@keyframes clockpulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.82); } }
+@keyframes blink { 50% { opacity: 0.25; } }
 
 /* --- main 상단 설명 한 줄 --- */
 .lead { color: var(--muted); font-size: 13.5px; line-height: 1.6; margin-bottom: 20px; max-width: 1100px; }

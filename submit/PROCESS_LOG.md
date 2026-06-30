@@ -128,6 +128,16 @@
 - 결과: ① `agent2_db_manager.md`를 **DB 매니저 스펙으로 전면 재작성**(역할/입력계약/10장 스키마/적재 매핑/조회 API/재현 절차/DoD). ② `src/db/schema.sql` — 명세서 10장 11개 테이블(documents·document_pages·evidence_map·extracted_fields·requirements·evaluation_items·deliverables·proposal_sections·analysis_results·api_cache·tasks). ③ `src/db/load_to_db.py` — agent1_output.json + agent2_output.json을 표준 테이블로 적재, **표준 field_name 확정**(business_name/ordering_agency/contract_method/budget:*/period:*, 구 미해결이슈#2 해소), 재적재 idempotent(문서 단위 교체). ④ `src/db/query.py` — 명세서 3.2 GET에 1:1 대응하는 조회 함수 9종(list_documents/get_document/classification/fields/summary/requirements/evaluation/deliverables/risks). ⑤ **검증**(RD1.pdf): 적재 pages37·evidence120·fields5·requirements30·evaluation7·analysis3 → 조회 분류 R&D conf1.0·예산 150억·평가배점7·과업27·누락위험1. ⑥ `proposal.db` .gitignore 처리. **전체 파이프라인 완성: PDF→파싱→분석→DB→조회.**
 - 막힘 → 해결: 없음(stdlib sqlite3라 의존성 0, 첫 실행에 적재·조회 모두 통과).
 
+### [#11] agent3용 SQLite 조회 가이드 작성 + 팀 공유(git merge·push)
+- 작성자(팀원): 마경림(mkr)
+- 목표: agent3(대시보드)가 DB에서 분석 결과를 읽도록 조회 가이드 명세를 만들고, 내 구현을 팀 원격에 공유한다.
+- 에이전트에게 시킨 것(실제 프롬프트 핵심 인용):
+  > "일단 이대로 깃푸시해봐 에이전트 3이 해볼려고해"
+  > "agent3이 sqlite정보 읽을수 있게 명세서도 만들어서 같이 git해줘"
+- 사용한 기법: (b) git 협업 / (c) 재사용 산출물(조회 가이드)
+- 결과: ① 푸시 전 점검 — API 키 누출 0, `proposal.db`/`__pycache__` 정크 제외(.gitignore 보강). ② 원격이 앞서 있어(팀원 agent3가 v9/v13 리포트 푸시) 충돌 → **원격의 겹치는 파일은 전부 빈 템플릿(agent2_extract 0줄·db_manager 0줄·PROCESS_LOG 빈양식)** 임을 확인 후, `merge -X ours`로 **내 구현 유지 + agent3 리포트 보존** 안전 병합. ③ `src/db/README.md` 신규 — agent3가 SQLite 읽는 법(조회 함수 9종·실제 반환 예시·React용 FastAPI 래퍼 8줄·화면 탭↔함수 매핑). ④ 커밋·푸시로 팀 공유.
+- 막힘 → 해결: git push가 non-fast-forward로 거부 → fetch로 원격 내용 검증(빈 템플릿 확인) 후 `-X ours` 병합으로 팀원 작업(agent3 리포트) 손실 없이 통합.
+
 ---
 
 ## 마무리 요약 (1~2줄)
